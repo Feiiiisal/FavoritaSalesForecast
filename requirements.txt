@@ -1,0 +1,16 @@
+pandas
+pyodbc
+python-dotenv
+matplotlib
+seaborn
+plotly
+nbformat
+statsmodels
+dash
+wordcloud
+keras
+Cython
+tensorflow
+keras-tuner
+pmdarima
+scikeras
