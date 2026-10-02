@@ -1,65 +1,63 @@
-# FavoritaSalesForecast
+# Favorita Store Sales Forecasting
 
-## Introduction:
-Predicting grocery sales might sound simple, but with a vast inventory and multiple variables at play, it becomes a unique puzzle. For Corporación Favorita, a leading grocery chain, accurately forecasting sales is crucial. Whether it's avoiding disappointed customers due to stock-outs or reducing waste from unsold items, having a precise forecast makes a difference.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![Models](https://img.shields.io/badge/models-ARIMA%20%7C%20LSTM%20%7C%20XGBoost-green)
+![Power BI](https://img.shields.io/badge/dashboard-Power%20BI-yellow)
 
-This project dives deep into the sales data, seeks patterns, and crafts a prediction system to give the most accurate sales forecast possible.
+Forecasting daily grocery sales for **Corporación Favorita**, a large retailer
+in Ecuador. Accurate forecasts help a retailer avoid empty shelves and reduce
+waste from unsold stock. This project explores the sales data, tests several
+forecasting approaches and compares them. The best model is deployed in the
+companion app
+[SalesForecastStreamlitApp](https://github.com/Feiiiisal/SalesForecastStreamlitApp).
 
-## Getting Started:
-### Prerequisites:
-To run the analysis and scripts provided, ensure you have the following packages installed:
+## What's in the project
 
-'pandas'
-'pyodbc'
-'python-dotenv'
-'matplotlib'
-'seaborn'
-'plotly'
-'nbformat'
-'statsmodels'
-'dash'
-'wordcloud'
-'keras'
-'Cython'
-'tensorflow'
-'keras-tuner'
-'pmdarima'
-'scikeras'
-You can easily install these packages using pip:
+- **Data acquisition**: the data comes from a SQL database, OneDrive and this
+  repository, loaded with `pyodbc` and `pandas`.
+- **Exploratory analysis**: oil prices over time, the effect of holidays and
+  events on sales, and transaction patterns across stores and time.
+- **Time series models**: ARIMA and SARIMAX (`statsmodels`, `pmdarima`).
+- **Machine learning and deep learning**: XGBoost and LSTM networks
+  (`tensorflow`/`keras`, tuned with `keras-tuner`).
+- **Evaluation**: RMSE and RMSLE, including cross-validated splits.
+- **Dashboard**: a Power BI report in `Power BI Dashboard/sales_dashboard.pbix`.
 
+## Results
 
-### Data Sources:
-Our dataset resides in three main places:
+With tuned parameters, the XGBoost model reached an **RMSLE of about 0.0054**
+in the notebook's evaluation. The full comparison of models is in
+`store_sales_forecasting.ipynb`.
 
-SQL Database
-OneDrive
-GitHub
-To load the datasets from these sources, we used pyodbc for SQL database connections and pandas for reading CSV files.
+## Repository contents
 
-## Project Structure:
-The main sections of our analysis include:
+```
+store_sales_forecasting.ipynb   The analysis and modelling notebook
+Datasets/                       holidays_events, oil, stores, transactions, train.zip, test
+Power BI Dashboard/             Power BI report (.pbix)
+requirements.txt
+```
 
-Data Acquisition: Connecting to multiple databases, transforming raw data into usable Pandas DataFrames.
-Exploratory Data Analysis (EDA): Visualization and statistical analysis of oil prices, holiday events, and transaction datasets.
-Time Series Analysis: Employing ARIMA and SARIMAX models to forecast sales over time.
-Neural Network Modeling: Using LSTM networks to learn from historical sales data.
-Model Evaluation: Assessing the performance of models with metrics like RMSE.
+`Datasets/train.zip` must be unzipped before the training data can be read.
+`store_sales_forecasting (1).ipynb` is a second copy of the notebook.
 
-## Results:
-The analyses provided insights like:
+## Setup
 
-Trends in oil prices over time.
-Understanding the role of holidays and events on sales.
-Patterns in transaction volume across stores and over time.
-Predicting future sales with the help of various models.
+```bash
+pip install -r requirements.txt
+jupyter notebook store_sales_forecasting.ipynb
+```
 
-## How to Run the Code:
-After cloning the repository, navigate to the project directory and run the main script:
+Some of the data is read from an Azure SQL database using credentials from a
+`.env` file. Never commit `.env`; if you do not have database access, use the
+CSV files in `Datasets/`.
 
-## Acknowledgments:
-Special thanks to the team members who contributed to this project and Corporación Favorita for providing the dataset.
+## Acknowledgements
 
-Note: Remember to always keep your environment variables and any sensitive information secure and never push them to public repositories.
+Thanks to the team members who worked on this project, and to Corporación
+Favorita for providing the data.
 
-Happy Forecasting!
+## License
 
+[MIT](LICENSE)
